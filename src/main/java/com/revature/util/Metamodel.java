@@ -39,7 +39,6 @@ public class Metamodel<T> {
     }
 
     public IdField getPrimaryKey() {
-
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             Id primaryKey = field.getAnnotation(Id.class);
