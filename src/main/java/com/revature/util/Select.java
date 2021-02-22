@@ -9,7 +9,6 @@ public class Select {
     }
     private void selectAll(Metamodel<?> model){
         String tableName = model.getModel().getAnnotation(Table.class).tableName();
-
         select = "SELECT * FROM " + tableName;
     }
     public String getSelect() {
