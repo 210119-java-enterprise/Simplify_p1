@@ -34,11 +34,10 @@ public class Metamodel<T> {
         return clazz.getName();
     }
 
-    public String getSimpleClassName() {
-        return clazz.getSimpleName();
+    public Class<T> getModel() {
+        return clazz;
     }
-
-    public IdField getPrimaryKey() {
+        public IdField getPrimaryKey() {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             Id primaryKey = field.getAnnotation(Id.class);
