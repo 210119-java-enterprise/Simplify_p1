@@ -19,11 +19,9 @@ public class IdField {
     public String getName() {
         return field.getName();
     }
-
     public Class<?> getType() {
         return field.getType();
     }
-
     public String getColumnName() {
         return field.getAnnotation(Id.class).columnName();
     }

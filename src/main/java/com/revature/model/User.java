@@ -1,9 +1,6 @@
 package com.revature.model;
 
-import com.revature.annotations.Column;
-import com.revature.annotations.Entity;
-import com.revature.annotations.Id;
-import com.revature.annotations.JoinColumn;
+import com.revature.annotations.*;
 
 @Entity(tableName = "users")
 public class User {
@@ -11,10 +8,10 @@ public class User {
     @Id(columnName = "id")
     private int id;
 
-    @Column(columnName = "first_name")
+    @Attr(columnName = "first_name")
     private String firstName;
 
-    @Column(columnName = "last_name")
+    @Column(columnName = "l_name")
     private String lastName;
 
     @Column(columnName = "email_address")

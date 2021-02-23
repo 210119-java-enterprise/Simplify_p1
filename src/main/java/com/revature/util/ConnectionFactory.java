@@ -7,15 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
 public class ConnectionFactory {
 
     private static ConnectionFactory connFactory = new ConnectionFactory();
     private Properties props = new Properties();
 
-
-    static{
-
+    static {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -23,8 +20,10 @@ public class ConnectionFactory {
         }
     }
 
-    private ConnectionFactory(){
-
+    /**
+     * loads file into the file reader for setting up connection
+     */
+    private ConnectionFactory() {
         try {
             props.load(new FileReader("src/main/resources/application.properties"));
         } catch (IOException e) {
@@ -32,23 +31,22 @@ public class ConnectionFactory {
         }
     }
 
-    public static ConnectionFactory getInstance(){ return connFactory;}
+    public static ConnectionFactory getInstance() {
+        return connFactory;
+    }
 
+    /** grabs our properties from the file, to establish a connection */
     public Connection getConnection() {
-
         Connection conn = null;
-
         try {
             conn = DriverManager.getConnection(
-
                     props.getProperty("url"),
                     props.getProperty("admin-usr"),
-                    props.getProperty("admin-ps")
+                    props.getProperty("admin-pw")
             );
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        System.out.println("Successfully connected to DB");
         return conn;
     }
 }

@@ -79,5 +79,43 @@ public class Metamodel<T> {
         return foreignKeyFields;
 
     }
+    public String findFieldNameOfColumn(String columnName){
+        for(ColumnField c : this.getColumns()){
+            if(c.getColumnName().equals(columnName)){
+                return c.getName();
+            }
+        }
+        if(getPrimaryKey().getColumnName().equals(columnName)){
+            return getPrimaryKey().getName();
+        }
+        for(ForeignKeyField f : getForeignKeys()){
+            if(f.getColumnName().equals(columnName)){
+                return f.getName();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * gets the class type of a given column
+     * @param columnName the name of the column
+     * @return the class type of column else returns null
+     */
+    public Class<?> findClassOfColumn(String columnName){
+        for(ColumnField c : this.getColumns()){
+            if(c.getColumnName().equals(columnName)){
+                return c.getType();
+            }
+        }
+        if(getPrimaryKey().getColumnName().equals(columnName)){
+            return getPrimaryKey().getType();
+        }
+        for(ForeignKeyField f : getForeignKeys()){
+            if(f.getColumnName().equals(columnName)){
+                return f.getType();
+            }
+        }
+        return null;
+    }
 
 }
